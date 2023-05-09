@@ -1,8 +1,45 @@
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
+
+  # Parents
+  
+  get '/parents' do
+    parents = Parent.all.order(:family_name)
+    parents.to_json(include: {kids: {only: [:name, :id, :dietary_restrictions, :parent_id]}})
+   end
+ 
+   get '/parents/:id' do
+     parent = Parent.find(params[:id])
+     parent.to_json
+   end
+ 
+   post '/parents' do
+     parent = Parent.create(
+       family_name: params[:family_name],
+       phone: params[:phone],
+       service_time: params[:service_time]
+     )
+ 
+     parent.to_json
+   end
+ 
+   patch '/parents/:id' do
+     parent = Parent.find(params[:id])
+     parent.update(
+       service_time: params[:service_time]
+     )
+     parent.to_json
+ 
+   end
+ 
+   delete '/parents/:id' do
+     parent = Parent.find(params[:id])
+     parent.destroy
+     parent.to_json
+   end
   
 
-# Kids 
+  # Kids 
   
   get '/kids' do 
     kids = Kid.all.order(:parent_id)
