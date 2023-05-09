@@ -23,20 +23,20 @@ class ApplicationController < Sinatra::Base
      parent.to_json(include: {kids: {only: [:name, :id, :dietary_restrictions, :parent_id]}})
    end
  
-   patch '/parents/:id' do
-     parent = Parent.find(params[:id])
-     parent.update(
-       service_time: params[:service_time]
-     )
-     parent.to_json(include: {kids: {only: [:name, :id, :dietary_restrictions, :parent_id]}})
+  #  patch '/parents/:id' do
+  #    parent = Parent.find(params[:id])
+  #    parent.update(
+  #      service_time: params[:service_time]
+  #    )
+  #    parent.to_json(include: {kids: {only: [:name, :id, :dietary_restrictions, :parent_id]}})
  
-   end
+  #  end
  
-   delete '/parents/:id' do
-     parent = Parent.find(params[:id])
-     parent.destroy
-     parent.to_json
-   end
+  #  delete '/parents/:id' do
+  #    parent = Parent.find(params[:id])
+  #    parent.destroy
+  #    parent.to_json
+  #  end
   
 
   # Kids 
