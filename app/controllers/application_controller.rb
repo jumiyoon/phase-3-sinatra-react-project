@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
  
    get '/parents/:id' do
      parent = Parent.find(params[:id])
-     parent.to_json
+     parent.to_json(include: {kids: {only: [:name, :id, :dietary_restrictions, :parent_id]}})
    end
  
    post '/parents' do
@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
        service_time: params[:service_time]
      )
  
-     parent.to_json
+     parent.to_json(include: {kids: {only: [:name, :id, :dietary_restrictions, :parent_id]}})
    end
  
    patch '/parents/:id' do
@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
      parent.update(
        service_time: params[:service_time]
      )
-     parent.to_json
+     parent.to_json(include: {kids: {only: [:name, :id, :dietary_restrictions, :parent_id]}})
  
    end
  
