@@ -1,5 +1,8 @@
 # Phase 3 Project Guidelines
 
+## Frontend
+You can find the React frontend here: https://github.com/jumiyoon/phase-3-frontend
+
 ## Learning Goals
 
 - Build a web basic API with Sinatra and Active Record to support a React
